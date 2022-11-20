@@ -48,7 +48,7 @@ func TestRegister(t *testing.T) {
 		{
 			Name:     "Complete metadata",
 			Diagram:  diag,
-			Metadata: &DiagramMetadata{Name: "name", Filename: "dir/name", FileFormat: "dot"},
+			Metadata: &DiagramMetadata{Name: "name", SaveDir: "dir/name", FileFormat: "dot"},
 			Error:    false,
 		},
 		{
@@ -60,7 +60,7 @@ func TestRegister(t *testing.T) {
 		{
 			Name:     "Missing name",
 			Diagram:  diag,
-			Metadata: &DiagramMetadata{Filename: "something", FileFormat: "dot"},
+			Metadata: &DiagramMetadata{SaveDir: "something", FileFormat: "dot"},
 			Error:    true,
 		},
 		{
@@ -72,7 +72,7 @@ func TestRegister(t *testing.T) {
 		{
 			Name:     "Missing fileformat",
 			Diagram:  diag,
-			Metadata: &DiagramMetadata{Name: "name", Filename: "some/file"},
+			Metadata: &DiagramMetadata{Name: "name", SaveDir: "some/file"},
 			Error:    false,
 		},
 	}
@@ -88,11 +88,11 @@ func TestRegister(t *testing.T) {
 				require.True(t, ok)
 				require.Equal(t, tc.Diagram, a.diag)
 				require.Equal(t, tc.Metadata.Name, a.metadata.Name)
-				if tc.Metadata.Filename == "" {
+				if tc.Metadata.SaveDir == "" {
 					exp := filepath.Join(".", tc.Metadata.Name)
-					require.Equal(t, exp, a.metadata.Filename)
+					require.Equal(t, exp, a.metadata.SaveDir)
 				} else {
-					require.Equal(t, tc.Metadata.Filename, a.metadata.Filename)
+					require.Equal(t, tc.Metadata.SaveDir, a.metadata.SaveDir)
 				}
 				if tc.Metadata.FileFormat == "" {
 					require.Equal(t, "dot", a.metadata.FileFormat)

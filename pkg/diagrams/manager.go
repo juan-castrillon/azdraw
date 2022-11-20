@@ -44,8 +44,8 @@ func (dm *DiagramManager) Register(diag AzDiagram, metadata *DiagramMetadata) er
 	if metadata == nil || metadata.Name == "" {
 		return errors.New("invalid metadata")
 	}
-	if metadata.Filename == "" {
-		metadata.Filename = filepath.Join(".", metadata.Name)
+	if metadata.SaveDir == "" {
+		metadata.SaveDir = filepath.Join(".", metadata.Name)
 	}
 	if metadata.FileFormat == "" {
 		metadata.FileFormat = "dot"

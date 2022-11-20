@@ -5,7 +5,7 @@ type DiagramMetadata struct {
 	// Name of the diagram, used to register
 	Name string
 	// Path on where to output the file
-	Filename string
+	SaveDir string
 	// Format for the output file. SUpported are dot and png
 	FileFormat string
 }
